@@ -26,13 +26,14 @@ def determine_tennis_winner(points):
                 score_A += 1
             else:
                 score_B += 1
-
+            # Handling deuce situations first
             if score_A >= 3 and score_B >= 3:
                 diff = score_A - score_B
                 if diff >= 2:
                     return 'A', idx
                 elif diff <= -2:
                     return 'B', idx
+            # Clear winning situations
             else:
                 if score_A >= 4:
                     return 'A', idx
@@ -54,7 +55,7 @@ def determine_tennis_winner(points):
                 score_A += 1
             else:
                 score_B += 1
-
+            # First to reach 7 points with minimum 2 point difference
             if score_A >= 7 or score_B >= 7:
                 diff = score_A - score_B
                 if diff >= 2:
@@ -65,6 +66,7 @@ def determine_tennis_winner(points):
         return None, idx, score_A, score_B
 
     def check_set_winner(games_A, games_B):
+        # Checks set winner in non-tiebreaker siatuation
         if games_A >= 6 and games_A - games_B >= 2:
             return 'A'
         elif games_B >= 6 and games_B - games_A >= 2:
@@ -110,6 +112,7 @@ def determine_tennis_winner(points):
 
 
 def format_result(result):
+    # Prints the results in the terminal
     print("=" * 40)
     print(f"  MATCH WINNER: Player {result['winner']}")
     print("=" * 40)
@@ -124,9 +127,11 @@ def format_result(result):
 if __name__ == "__main__":
 
     def game_points(winner, loser):
+        # Returns data of a clear winning situation
         return [winner, winner, winner, winner]
 
     def deuce_game(winner, loser):
+        # Returns data of a deuce winning situation
         return [winner, loser, winner, loser, winner, loser, winner, winner]
 
     # ── Test 1: Player A wins 6-0 ────────────────────────────────────────────
@@ -167,7 +172,7 @@ if __name__ == "__main__":
     assert result['final_score'] == '7-5'
 
     # ── Test 4: Tiebreak – A wins 7-6(3) ─────────────────────────────────────
-    print("\nTest 4: Tiebreak – A wins 7-6(3)")
+    print("\nTest 4: Tiebreak – A wins 7-6(tiebraker 7-3)")
     pts = []
     for _ in range(6):
         pts += game_points('A', 'B')
