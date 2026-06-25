@@ -13,8 +13,8 @@ official tennis scoring rules including deuce, advantage, tiebreaks, and set log
 - [Scoring Rules Implemented](#scoring-rules-implemented)
 - [Output](#output)
 - [Test Cases](#test-cases)
-- [Trade-offs & Design Decisions](#trade-offs--design-decisions)
-
+- [Design Decisions](#design-decisions)
+- [Assumptions & Limitations](#assumptions--limitations)
 ---
 
 ## Approach
@@ -155,7 +155,7 @@ memory usage O(1) relative to input size.
 
 ---
 
-## Assumptions
+## Assumptions & Limitations
 
 ###  One set only
 The problem specifies a single set, as given in the requirement. 
@@ -169,6 +169,6 @@ The solution assumes the input is a valid tennis match sequence (only `"A"` / `"
 and a sequence that always resolves to a winner), as given in the requirement. Adding input validation (empty array,
 invalid characters, incomplete match) would be a natural next step for production use.
 
-###  Tiebreak always at 6-6 (no final-set super-tiebreak)
+###  Tiebreak always at 6-6
 This implementation uses the standard 7-point tiebreak at 6-6, consistent with the
 one-set match format specified in the problem.
